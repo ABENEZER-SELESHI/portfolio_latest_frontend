@@ -92,8 +92,9 @@ export interface Certificate {
 }
 
 export interface ResumeInfo {
+  available: boolean;
   filename: string | null;
-  downloadUrl: string;
+  downloadUrl: string | null;
 }
 
 export interface ContactPayload {

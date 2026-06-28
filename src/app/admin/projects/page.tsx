@@ -134,7 +134,15 @@ export default function AdminProjectsPage() {
             <Input id="liveUrl" label="Live URL" {...register("liveUrl")} />
             <Input id="githubUrl" label="GitHub URL" {...register("githubUrl")} />
             <Input id="completedAt" label="Completed date" type="date" {...register("completedAt")} />
-            <Input id="sortOrder" label="Sort order" type="number" {...register("sortOrder")} />
+            <Input
+              id="sortOrder"
+              label="Sort order"
+              type="number"
+              min={0}
+              step={1}
+              error={errors.sortOrder?.message}
+              {...register("sortOrder")}
+            />
             <label className="flex items-center gap-2 text-sm">
               <input type="checkbox" {...register("isFeatured")} />
               Featured

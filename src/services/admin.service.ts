@@ -1,4 +1,5 @@
 import { apiClient, unwrap } from "./api-client";
+import { normalizeProject, normalizeProjects } from "@/utils/project";
 import type {
   Certificate,
   ContactMessage,
@@ -25,18 +26,22 @@ export const adminService = {
     ),
   deleteResume: () => unwrap<null>(apiClient.delete("/admin/resume")),
 
-  getProjects: () => unwrap<Project[]>(apiClient.get("/projects")),
-  createProject: (formData: FormData) =>
-    unwrap<Project>(
-      apiClient.post("/admin/projects", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
+  getProjects: async () => normalizeProjects(await unwrap<Project[]>(apiClient.get("/projects"))),
+  createProject: async (formData: FormData) =>
+    normalizeProject(
+      await unwrap<Project>(
+        apiClient.post("/admin/projects", formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        })
+      )
     ),
-  updateProject: (id: string, formData: FormData) =>
-    unwrap<Project>(
-      apiClient.patch(`/admin/projects/${id}`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
+  updateProject: async (id: string, formData: FormData) =>
+    normalizeProject(
+      await unwrap<Project>(
+        apiClient.patch(`/admin/projects/${id}`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        })
+      )
     ),
   deleteProject: (id: string) => unwrap<null>(apiClient.delete(`/admin/projects/${id}`)),
 

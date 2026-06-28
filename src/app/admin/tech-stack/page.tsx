@@ -61,9 +61,9 @@ export default function AdminTechStackPage() {
   });
 
   return (
-    <AdminLayout title="Tech Stack">
+    <AdminLayout title="Skills">
       <div className="mb-6 flex justify-end">
-        <Button onClick={() => setShowForm(true)}><Plus className="h-4 w-4" /> Add item</Button>
+        <Button onClick={() => setShowForm(true)}><Plus className="h-4 w-4" /> Add skill</Button>
       </div>
       {showForm && (
         <Card className="mb-6 max-w-md">

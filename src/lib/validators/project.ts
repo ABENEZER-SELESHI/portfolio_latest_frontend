@@ -9,7 +9,7 @@ export const projectFormSchema = z.object({
   category: z.string().optional(),
   isFeatured: z.boolean(),
   completedAt: z.string().optional(),
-  sortOrder: z.number().int(),
+  sortOrder: z.coerce.number().int("Sort order must be a whole number"),
 });
 
 export type ProjectFormValues = z.infer<typeof projectFormSchema>;

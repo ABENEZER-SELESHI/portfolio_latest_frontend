@@ -11,7 +11,6 @@ import {
   LogOut,
   Mail,
   Settings,
-  Wrench,
 } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { useAuth } from "@/hooks/use-auth";
@@ -22,8 +21,7 @@ const links = [
   { href: "/admin/about", label: "About / Site", icon: Settings },
   { href: "/admin/projects", label: "Projects", icon: Briefcase },
   { href: "/admin/certificates", label: "Certificates", icon: Award },
-  { href: "/admin/skills", label: "Skills", icon: Wrench },
-  { href: "/admin/tech-stack", label: "Tech Stack", icon: Layers },
+  { href: "/admin/tech-stack", label: "Skills", icon: Layers },
   { href: "/admin/resume", label: "Resume", icon: FileText },
   { href: "/admin/messages", label: "Messages", icon: Mail },
 ];

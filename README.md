@@ -21,6 +21,7 @@ npm run dev
 | Command | Description |
 |---------|-------------|
 | `npm run dev` | Development server |
+| `npm run clean` | Delete `.next` cache (fixes corrupt build errors) |
 | `npm run build` | Production build |
 | `npm run lint` | ESLint |
 
@@ -34,3 +35,13 @@ npm run dev
 ## Admin Access
 
 Use the floating **+** button on the portfolio or navigate to `/admin/login`.
+
+## Troubleshooting
+
+If you see `ENOENT: routes-manifest.json` or every page returns **500**:
+
+1. Stop the dev server (`Ctrl+C`)
+2. Run `npm run clean`
+3. Start again with `npm run dev`
+
+Do not run `npm run build` while `npm run dev` is already running.

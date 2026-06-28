@@ -97,7 +97,15 @@ export default function AdminCertificatesPage() {
             <Input id="issuer" label="Issuer" error={errors.issuer?.message} {...register("issuer")} />
             <Input id="issueDate" label="Issue date" type="date" error={errors.issueDate?.message} {...register("issueDate")} />
             <Input id="externalUrl" label="External URL" {...register("externalUrl")} />
-            <Input id="sortOrder" label="Sort order" type="number" {...register("sortOrder")} />
+            <Input
+              id="sortOrder"
+              label="Sort order"
+              type="number"
+              min={0}
+              step={1}
+              error={errors.sortOrder?.message}
+              {...register("sortOrder")}
+            />
             <div>
               <label className="text-sm font-medium">File (image or PDF)</label>
               <input type="file" accept="image/*,.pdf" className="mt-1 block w-full text-sm" onChange={(e) => setFile(e.target.files?.[0] ?? null)} />

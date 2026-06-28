@@ -65,12 +65,12 @@ export function ProjectsSection() {
                   </p>
                   {project.technologies.length > 0 && (
                     <div className="mt-4 flex flex-wrap gap-1.5">
-                      {project.technologies.map((t) => (
+                      {project.technologies.map((tech, index) => (
                         <span
-                          key={t}
+                          key={`${project.id}-${tech}-${index}`}
                           className="rounded border border-border px-2 py-0.5 text-xs text-muted"
                         >
-                          {t}
+                          {tech}
                         </span>
                       ))}
                     </div>

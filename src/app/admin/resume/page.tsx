@@ -14,7 +14,8 @@ import { API_BASE_URL } from "@/constants";
 export default function AdminResumePage() {
   const toast = useToast();
   const qc = useQueryClient();
-  const { data, isError } = useResume();
+  const { data } = useResume();
+  const hasResume = data?.available && data.downloadUrl;
   const [file, setFile] = useState<File | null>(null);
 
   const uploadMutation = useMutation({
@@ -46,7 +47,7 @@ export default function AdminResumePage() {
   return (
     <AdminLayout title="Resume">
       <Card className="max-w-lg">
-        {isError ? (
+        {!hasResume ? (
           <p className="text-sm text-muted mb-4">No resume uploaded yet.</p>
         ) : (
           <p className="text-sm text-muted mb-4">
@@ -67,7 +68,7 @@ export default function AdminResumePage() {
             <Button onClick={() => uploadMutation.mutate()} isLoading={uploadMutation.isPending} disabled={!file}>
               Upload
             </Button>
-            {!isError && (
+            {hasResume && (
               <Button variant="danger" onClick={() => confirm("Remove resume?") && deleteMutation.mutate()} isLoading={deleteMutation.isPending}>
                 Remove
               </Button>

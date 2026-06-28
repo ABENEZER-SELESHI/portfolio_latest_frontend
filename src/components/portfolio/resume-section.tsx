@@ -9,9 +9,9 @@ import { Card } from "@/components/ui/card";
 import { API_BASE_URL } from "@/constants";
 
 export function ResumeSection() {
-  const { data, isLoading, isError } = useResume();
-  const downloadUrl =
-    data?.downloadUrl ?? `${API_BASE_URL}/resume/download`;
+  const { data, isLoading } = useResume();
+  const hasResume = data?.available && data.downloadUrl;
+  const downloadUrl = data?.downloadUrl ?? `${API_BASE_URL}/resume/download`;
 
   return (
     <Section id="resume" title="Resume" subtitle="Download my latest CV">
@@ -20,7 +20,7 @@ export function ResumeSection() {
         <Card className="max-w-lg flex items-start gap-4">
           <FileText className="h-10 w-10 shrink-0 text-accent" aria-hidden />
           <div>
-            {isError ? (
+            {!hasResume ? (
               <p className="text-sm text-muted mb-4">
                 Resume is not available at the moment. Please check back later or use the contact
                 form.
@@ -33,8 +33,8 @@ export function ResumeSection() {
                 </p>
               </>
             )}
-            <a href={downloadUrl} target="_blank" rel="noopener noreferrer">
-              <Button disabled={isError}>
+            <a href={hasResume ? downloadUrl : undefined} target="_blank" rel="noopener noreferrer">
+              <Button disabled={!hasResume}>
                 <Download className="h-4 w-4" />
                 Download Resume
               </Button>
