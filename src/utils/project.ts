@@ -14,17 +14,17 @@ export function normalizeProjectTechnologies(
   );
 }
 
-export function normalizeProject<T extends { technologies: ProjectTechnologyInput[] }>(
-  project: T
-): Project {
+type ProjectInput = Omit<Project, "technologies"> & {
+  technologies: ProjectTechnologyInput[];
+};
+
+export function normalizeProject(project: ProjectInput): Project {
   return {
     ...project,
     technologies: normalizeProjectTechnologies(project.technologies),
-  } as Project;
+  };
 }
 
-export function normalizeProjects<T extends { technologies: ProjectTechnologyInput[] }>(
-  projects: T[]
-): Project[] {
+export function normalizeProjects(projects: ProjectInput[]): Project[] {
   return projects.map(normalizeProject);
 }
