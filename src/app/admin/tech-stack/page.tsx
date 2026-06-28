@@ -69,8 +69,14 @@ export default function AdminTechStackPage() {
         <Card className="mb-6 max-w-md">
           <form onSubmit={handleSubmit((v) => createMutation.mutate(v))} className="space-y-4">
             <Input label="Name" error={errors.name?.message} {...register("name")} />
-            <Input label="Proficiency %" type="number" min={0} max={100} {...register("proficiency")} />
-            <Input label="Sort order" type="number" {...register("sortOrder")} />
+            <Input
+              label="Proficiency %"
+              type="number"
+              min={0}
+              max={100}
+              {...register("proficiency", { setValueAs: (v) => (v === "" ? undefined : Number(v)) })}
+            />
+            <Input label="Sort order" type="number" {...register("sortOrder", { valueAsNumber: true })} />
             <div>
               <label className="text-sm font-medium">Logo</label>
               <input type="file" accept="image/*" className="mt-1 block w-full text-sm" onChange={(e) => setLogo(e.target.files?.[0] ?? null)} />

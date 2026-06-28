@@ -104,7 +104,7 @@ export default function AdminCertificatesPage() {
               min={0}
               step={1}
               error={errors.sortOrder?.message}
-              {...register("sortOrder")}
+              {...register("sortOrder", { valueAsNumber: true })}
             />
             <div>
               <label className="text-sm font-medium">File (image or PDF)</label>

@@ -75,7 +75,7 @@ export default function AdminSkillsPage() {
         <Card className="mb-6 max-w-md">
           <form onSubmit={categoryForm.handleSubmit((v) => createCategory.mutate(v))} className="space-y-3">
             <Input label="Category name" error={categoryForm.formState.errors.name?.message} {...categoryForm.register("name")} />
-            <Input label="Sort order" type="number" {...categoryForm.register("sortOrder")} />
+            <Input label="Sort order" type="number" {...categoryForm.register("sortOrder", { valueAsNumber: true })} />
             <div className="flex gap-2">
               <Button type="submit" isLoading={createCategory.isPending}>Save</Button>
               <Button type="button" variant="secondary" onClick={() => setShowCategory(false)}>Cancel</Button>
@@ -100,7 +100,7 @@ export default function AdminSkillsPage() {
               )}
             </div>
             <Input label="Skill name" error={skillForm.formState.errors.name?.message} {...skillForm.register("name")} />
-            <Input label="Sort order" type="number" {...skillForm.register("sortOrder")} />
+            <Input label="Sort order" type="number" {...skillForm.register("sortOrder", { valueAsNumber: true })} />
             <div className="flex gap-2">
               <Button type="submit" isLoading={createSkill.isPending}>Save</Button>
               <Button type="button" variant="secondary" onClick={() => setShowSkill(false)}>Cancel</Button>

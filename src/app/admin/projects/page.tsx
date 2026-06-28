@@ -141,7 +141,7 @@ export default function AdminProjectsPage() {
               min={0}
               step={1}
               error={errors.sortOrder?.message}
-              {...register("sortOrder")}
+              {...register("sortOrder", { valueAsNumber: true })}
             />
             <label className="flex items-center gap-2 text-sm">
               <input type="checkbox" {...register("isFeatured")} />
